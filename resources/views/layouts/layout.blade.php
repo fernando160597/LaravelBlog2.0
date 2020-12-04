@@ -15,9 +15,10 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet"> 
 </head>
 
+{{-- Navbar padrão em todas as páginas com os links e o nome do usuário em dropdown menu --}}
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand"><?=Auth::user()->name?></a>
+        <a class="navbar-brand">Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,12 +37,17 @@
                 
             </ul>
             <form class="form-inline my-2 my-lg-0" action="/postagens">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="#Partiu Buscar?" aria-label="Search" name = "search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
             <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 d-flex justify-content-between">
                 @auth
-                <a href="/sair" class="text-danger">Sair</a>
+                <a class="nav-link dropdown-toggle navbar-brand" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?=Auth::user()->name?></a>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a href="/sair" class="text-danger dropdown-item">Sair</a>
+                  </div>
                 @endauth
                 @guest
                 <a href="/entrar">Entrar</a>

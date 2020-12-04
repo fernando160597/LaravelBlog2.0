@@ -12,13 +12,22 @@ Editar Postagens
         value="<?=$busca[0]->titulo?>"
         required>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <textarea class="form-control" name = "conteudo" rows="10" required >
             <?=$busca[0]->conteudo?>
         </textarea>
       </div>
-    <div class="card text-center">
-        <button type="submit" class="btn btn-default btn-success pull-right">Salvar</button>
+
+      <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-1">
+                <a href="/postagens" class="btn btn-primary">Retornar</a>
+            </div>
+            <div class="col col-lg-2">
+                <button type="submit" class="btn btn-default btn-success pull-right">
+                    Salvar</button>
+            </div>
+        </div>
     </div>
 </form>
 

@@ -7,11 +7,11 @@ Criar Postagens
 @section('conteudo')
 <form action="/postagens/criar" method="post">
     @csrf
-    <div class="form-group">
+    <div class="form-group col-md-8">
         <label>Título : </label>
         <input type="text" class="form-control" placeholder="Título" name="titulo" required>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-10">
         <textarea class="form-control" name = "conteudo" rows="10" required ></textarea>
       </div>
     <div class="card text-center">

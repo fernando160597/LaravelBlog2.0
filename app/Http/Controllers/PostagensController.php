@@ -16,9 +16,12 @@ class PostagensController extends Controller
 {
     public function __construct()
     {
+        //Requer autenticação em todas as rotas ligadas a esse controle
         $this->middleware('auth');
     }
     public function index(Request $request) {
+
+        //Página postagens, com paginação 1 e a busca não sensitiva, maisuculo ou minusculo
         
         $buscaLower = strtolower($request->search);
 
@@ -39,6 +42,8 @@ class PostagensController extends Controller
 
     public function postagensUsuario(Request $request){
 
+        //Postagens do usuário especifico 
+
         $postagensUsuario = Postagem::orderBy('id')
         ->where('criador','=',Auth::user()->name)
         ->paginate(1);
@@ -48,12 +53,13 @@ class PostagensController extends Controller
 
 
     }
-    
+    //Redireciona para a tela de criar
     public function create(){
         
         return view ('postagens.create');
     }
     
+    //Salva o novo post no banco
     public function store(Request $request){
         $postagem = new Postagem();
         $postagem->titulo = $request->titulo;
@@ -63,12 +69,14 @@ class PostagensController extends Controller
         return redirect('/postagens');
         
     }
+    //Deleta pelo id 
     public function destroy (Request $request){
         
         Postagem::destroy($request->id);
         return redirect('/postagens');
     }
     
+    //Procura o post pelo id no banco e redireciona para a tela de edição
     public function change (Request $request){
 
             $busca =  Postagem::orderBy('id')
@@ -77,9 +85,7 @@ class PostagensController extends Controller
             return view('postagens.edit', ['busca' => $busca]);
         }
         
-
-
-
+//Faz um update usando as informações colocadas na tela de editar
  public function update (Request $request){
     
     Postagem::where('id',$request->id)
